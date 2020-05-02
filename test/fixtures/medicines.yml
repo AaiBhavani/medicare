@@ -3,9 +3,9 @@
 one:
   name: MyString
   quantity: MyString
-  type: 
+  m_type: MyString
 
 two:
   name: MyString
   quantity: MyString
-  type: 
+  m_type: MyString
