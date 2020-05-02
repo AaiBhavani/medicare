@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: medicare_production
-  username: medicare
-  password: <%= ENV['MEDICARE_DATABASE_PASSWORD'] %>
+  host: localhost
+  password:
