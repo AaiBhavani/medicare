@@ -31,12 +31,22 @@ ActiveRecord::Schema.define(version: 2020_05_05_175352) do
 
   create_table "medicines", force: :cascade do |t|
     t.string "name"
-    t.string "quantity"
-    t.string "m_type"
+    t.string "product"
+    t.string "company"
+    t.string "code"
+    t.string "packing"
+    t.integer "unit", default: 1
+    t.decimal "sgst", precision: 4, scale: 2, default: "6.0", null: false
+    t.decimal "cgst", precision: 4, scale: 2, default: "6.0", null: false
+    t.decimal "igst", precision: 4, scale: 2, default: "0.0", null: false
+    t.decimal "rate_margin", precision: 4, scale: 2, default: "0.0", null: false
+    t.decimal "fixed_disc", precision: 4, scale: 2, default: "0.0", null: false
+    t.string "category"
+    t.integer "mrp_paise", default: 0, null: false
+    t.integer "pur_paise", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_medicines_on_name", unique: true
-    t.index ["quantity"], name: "index_medicines_on_quantity", unique: true
   end
 
   create_table "users", force: :cascade do |t|
