@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_175352) do
+ActiveRecord::Schema.define(version: 2020_05_09_183820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,28 @@ ActiveRecord::Schema.define(version: 2020_05_05_175352) do
     t.index ["name"], name: "index_medicines_on_name", unique: true
   end
 
+  create_table "order_details", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "medicine_id", null: false
+    t.integer "unit", default: 1
+    t.integer "price_each_paise", default: 0, null: false
+    t.integer "price_paise", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.integer "delivery_mode", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["medicine_id"], name: "index_order_details_on_medicine_id"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "total_paise", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,4 +82,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_175352) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "order_details", "medicines"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "orders", "users"
 end

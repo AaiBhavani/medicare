@@ -11,6 +11,11 @@ class Ability
         can :manage, :all
       else
         can :read, Medicine
+        can :create, Order
+        can [:read, :update, :delete], Order, user_id: user.id 
+        # can [:update,:edit, :delete], Order do |order|
+        #   order.try(:user) == user
+        # end
       end
     #
     # The first argument to `can` is the action you are giving the user
