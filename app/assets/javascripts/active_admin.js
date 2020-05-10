@@ -1,7 +1,7 @@
 //= require active_admin/base
 $( document ).ready(function() {
 $('.has_many_container').on('change', "select[name*='order[order_details_attributes][']", function() {
-  var currentValue = $(this);
+  var currentValue = $(this).find('option:selected');
   var total_units = currentValue.text().match(/total units=\((.*?)\)/)[1]
   var per_price = currentValue.text().match(/MRP per unit=\((.*?)\)/)[1]
 
